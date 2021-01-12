@@ -1,4 +1,4 @@
-import homePage from './components/Home.vue';
+import index from './components/index.vue';
 import blogPost from './components/blogpost.vue';
 import addBlog from "./components/addBlog.vue";
 import login from "./components/auth/login.vue";
@@ -7,7 +7,7 @@ import forgotPassword from "./components/auth/forgotPassword.vue";
 import register from "./components/auth/register.vue";
 import admin from "./components/auth/admin.vue";
 export default [
-  { path: "/", component: homePage },
+  { path: "/", component: index },
   { path: "/blogs", component: blogPost},
   { path: "/addBlog", component: addBlog },
   
