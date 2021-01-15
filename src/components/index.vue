@@ -1,90 +1,68 @@
 <template>
   <div>
+    <!-- banner img -->
     <div id="img">
       <img src="../img/index.jpeg" width="100%" class="d-inline-block align-top" alt="vue_icon" />
-      <!-- <b-img src="../img/index.jpeg" fluid alt="Responsive image"></b-img> -->
     </div>
+
+    <!-- two main sale block img -->
     <div>
       <div class="row no-gutters">
-        <div class="col bgImg" :style="{backgroundImage: imgSnowboard}" align="center">
+        <div class="col-sm-6 bgImg" :style="{backgroundImage: imgSnowboard}" align="center">
           <div class="fram">
-            <h4>SNOWBOARD / SKI EQUIPMENT SALE</h4>
+              <p>
+                <a>SNOWBOARD / SKI</a><br/> <a>EQUIPMENT SALE</a><br/>
+              </p>
           </div>
         </div>
-        <div class="col bgImg" :style="{backgroundImage: imgSnow}" align="center">
+        <div class="col-sm-6 bgImg" :style="{backgroundImage: imgSnow}" align="center">
           <div class="fram">
-            <h4>WINTER SALE</h4>
+            <p><a>WINTER SALE</a></p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <!--三欄式排版-->
-      <div class="row">
-        <div
-          class="col-4 box bg-cover"
-          style="background-image: url(https://images.unsplash.com/photo-1453785675141-67637e2d4b5c?dpr=2&auto=format&fit=crop&w=1500&h=918&q=80&cs=tinysrgb&crop=)"
-        ></div>
-        <div
-          class="col-4 box bg-cover"
-          style="background-image: url(https://images.unsplash.com/photo-1490921045028-16ab0b47b757?dpr=2&auto=format&fit=crop&w=1500&h=2000&q=80&cs=tinysrgb&crop=)"
-        ></div>
-        <div
-          class="col-4 box bg-cover"
-          style="background-image: url(https://images.unsplash.com/photo-1493585552824-131927c85da2?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=)"
-        ></div>
-      </div>
-      <!--左邊大圖佔整個瀏覽器的高度，右邊兩張圖上下排列-->
-      <div class="row" style="height: 100vh">
-        <div
-          class="col-8 bg-cover"
-          style="background-image: url(https://images.unsplash.com/photo-1453785675141-67637e2d4b5c?dpr=2&auto=format&fit=crop&w=1500&h=918&q=80&cs=tinysrgb&crop=)"
-        ></div>
-        <div class="col-4">
-          <div class="row flex-column h-100">
-            <div
-              class="h-50 bg-cover"
-              style="background-image: url(https://images.unsplash.com/photo-1502472584811-0a2f2feb8968?dpr=1&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=)"
-            ></div>
-            <div
-              class="h-50 bg-cover"
-              style="background-image: url(https://images.unsplash.com/photo-1496347646636-ea47f7d6b37b?dpr=1&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=)"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- product list -->
     <b-container>
-      <b-col class="m-5 text-center">
+      <!-- <b-col class="m-5 text-center">
         <h2>Feature Products</h2>
-      </b-col>
+      </b-col> -->
       <b-row align-h="center" class="m-5">
         <b-form-input v-model="search" placeholder="Find Product"></b-form-input>
       </b-row>
       <b-row align-h="center" class="m-3">
+        <b-card v-for="blog in filteredBlogs" :key="blog.id" :title="blog.name" :img-src="blog.pic" img-top tag="article"
+          style="max-width: 14rem;" class="m-3">
+          <b-card-text>{{blog.price}}</b-card-text>
+        </b-card>
+
+        <!-- <b-card
+          img-src="https://imgur.com/NEpaRAF.png"
+          img-alt="Image"
+          img-top
+          title="這是一個範例"
+          tag="article"
+          style="max-width: 20rem;color:#6C6C6C"
+          class="m-3"
+          align="center"
+        >
+          <b-card-text align="center" style="color:#9D9D9D;">Content:hi</b-card-text>
+
+        </b-card>
         <b-card
-          v-for="blog in filteredBlogs"
-          :key="blog.id"
-          :title="blog.name"
-          img-src="https://picsum.photos/600/300/?image=25"
+          img-src="https://imgur.com/GYoj1im.png"
           img-alt="Image"
           img-top
           tag="article"
           style="max-width: 20rem;"
           class="m-3"
         >
-          <b-card-text>Content: {{ blog.detail }}</b-card-text>
-          <b-card-text>Author: {{blog.price}}</b-card-text>
-          <b-card-text>
-            HashTags:
-            <ul>
-              <li v-for="hashtag in blog.count" :key="hashtag.id"># {{ hashtag }}</li>
-            </ul>
-          </b-card-text>
+          <b-card-text>Content:hi</b-card-text>
 
           <b-button href="#" variant="primary">See More</b-button>
-        </b-card>
+        </b-card> -->
+
       </b-row>
     </b-container>
   </div>
@@ -117,9 +95,9 @@ export default {
           id: appData.id,
           name: appData.name,
           count: appData.count,
-          detail: appData.detail,
+          // detail: appData.detail,
           price: appData.price,
-          pic: appData.pic
+          pic: appData.pic[0]
         });
       });
       this.blogs = blogs;
@@ -138,8 +116,17 @@ export default {
   padding: 30px !important;
 }
 .fram {
-  border: 5px solid rgba(255, 254, 254, 0.657);
+  border: 5px solid rgba(255, 255, 255, 0.657);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 5vmin;
+  font-weight: bold;
 }
+.fram p {
+  display:inline-block;
+  vertical-align:middle;
+  line-height: 5vmin;
+}
+
 /* PC */
 @media (min-width: 768px) {
   #img img {
@@ -149,6 +136,7 @@ export default {
   .fram {
     /* width: 500px; */
     height: 400px;
+    line-height:400px;
   }
 }
 /* mobile */
@@ -158,8 +146,10 @@ export default {
   }
 
   .fram {
-    width: 300px;
+    /* width: 300px; */
     height: 200px;
+    line-height:200px;
+
   }
 }
 
