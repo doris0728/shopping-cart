@@ -1,46 +1,15 @@
 <template>
   <div>
-    <!-- banner img -->
-    <div id="img">
-      <img src="../img/index.jpeg" width="100%" class="d-inline-block align-top" alt="vue_icon" />
-    </div>
-
-    <!-- two main sale block img -->
-    <div>
-      <div class="row no-gutters">
-        <div class="col-sm-6 bgImg pointer" :style="{backgroundImage: imgSnowboard}" align="center">
-          <div class="fram">
-              <p>
-                <a>SNOWBOARD / SKI</a><br/> <a>EQUIPMENT SALE</a><br/>
-              </p>
-          </div>
-        </div>
-        <div class="col-sm-6 bgImg pointer" :style="{backgroundImage: imgSnow}" align="center">
-          <div class="fram">
-            <p><a>WINTER SALE</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- product list -->
     <b-container fluid>
 
-      <b-row align-h="center" class="m-5">
-        <b-form-input v-model="search" placeholder="Find Product"></b-form-input>
-      </b-row>
-
       <!-- card -->
       <b-row align-h="center" class="m-3">
-          <b-card v-for="blog in filteredBlogs" :key="blog.id" :img-src="blog.pic" img-top tag="article" style="max-width: 14rem;" class="m-4 border-0">
-            <router-link :to="{path:'/page', query:{id:blog.id}}">
-            <b-card-title align="center" style="margin-bottom:.1rem; margin-top:-.1rem" class="pointer">
-              {{blog.name}}
-              </b-card-title>
-            </router-link>
-            <b-card-text align="center">${{blog.price}}</b-card-text>
-          </b-card>
-        
+        <b-card v-for="blog in findBlogById" :key="blog.id" :img-src="blog.pic" img-top tag="article" style="max-width: 14rem;" class="m-4 border-0 pointer">
+          <b-card-title align="center" style="margin-bottom:.1rem; margin-top:-.1rem">{{blog.name}}</b-card-title>
+          <b-card-text align="center">${{blog.price}}</b-card-text>
+        </b-card>
 
       </b-row>
     </b-container>
@@ -48,15 +17,15 @@
 </template>
 
 <script>
-import searchMixin from "../mixins/searchMixin";
+import jumpToProductMixins from "../mixins/jumpToProduct";
 import { db } from "@/config/firebaseConfig.js";
 export default {
   data() {
     return {
       blogs: [],
-      search: "",
       imgSnowboard:'url(' + require('../img/snowboard.jpg') + ')',
-      imgSnow:'url(' + require('../img/snow.jpg') + ')'
+      imgSnow:'url(' + require('../img/snow.jpg') + ')',
+      query: this.$route.query.id
     };
   },
   mounted() {
@@ -66,7 +35,6 @@ export default {
     async getBlogs() {
       let dbBlogs = await db.collection("blogs").get();
       const blogs = [];
-      console.log(dbBlogs);
       dbBlogs.forEach(doc => {
         let appData = doc.data();
         appData.id = doc.id;
@@ -80,9 +48,10 @@ export default {
         });
       });
       this.blogs = blogs;
+      console.log(this.blogs);
     }
   },
-  mixins: [searchMixin]
+  mixins: [jumpToProductMixins]
 };
 </script>
 
@@ -144,10 +113,5 @@ export default {
 /* 手手滑鼠 */
 .pointer {
   cursor: pointer;
-  color:black;
-  text-decoration:none;
-}
-.pointer:hover {
-  text-decoration:none;
 }
 </style>
