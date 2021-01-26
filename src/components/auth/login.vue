@@ -53,6 +53,7 @@ export default {
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
           this.$router.push("/admin");
+          this.setCookie("isLogin", true);
         })
         .catch((error) => {
           alert(error.message);

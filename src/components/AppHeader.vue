@@ -16,7 +16,9 @@
           <b-nav-item> <router-link to="/" exact>Home</router-link></b-nav-item>
           <b-nav-item><router-link to="/blogs" exact>Blog Post</router-link></b-nav-item>
           <b-nav-item><router-link to="/addBlog" exact>Add Blog Post</router-link></b-nav-item>
-          <b-nav-item><router-link to="/cart" exact>Cart</router-link></b-nav-item>
+          <b-nav-item><router-link to="/cart" exact>
+            <img src="../img/shopping-cart.png" width="28rem" class="d-inline-block align-top" alt="vue_icon" />
+          </router-link></b-nav-item>
           <b-nav-item-dropdown text="User" right>
             <b-dropdown-item><router-link to="/login" style="color:black">Login</router-link></b-dropdown-item>
             <b-dropdown-item><router-link to="/register" style="color:black">Register</router-link></b-dropdown-item>

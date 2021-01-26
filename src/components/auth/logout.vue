@@ -35,7 +35,8 @@ export default {
     logOut() {
       firebaseAuth.signOut().then(() => {
         firebaseAuth.onAuthStateChanged(() => {
-          this.$router.push('/login')
+          this.$router.push('/login');
+          this.setCookie("isLogin", false);
         })
       })
     }
