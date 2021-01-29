@@ -8,7 +8,7 @@
           class="d-inline-block align-top"
           alt="vue_icon"
         /> -->
-        <h4><strong> HEY </strong></h4>
+        <router-link to="/" class="pointer"><h4><strong> HEY </strong></h4></router-link>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
@@ -50,5 +50,13 @@ li a {
   text-decoration: none;
   color: black;
 }
-
+/* 手手滑鼠 */
+.pointer {
+  cursor: pointer;
+  color:#424244;
+  text-decoration:none;
+}
+.pointer:hover {
+  text-decoration:none;
+}
 </style>

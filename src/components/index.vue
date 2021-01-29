@@ -33,8 +33,8 @@
       <!-- card -->
       <b-row align-h="center" class="m-3">
           <b-card v-for="blog in filteredBlogs" :key="blog.id" :img-src="blog.pic" img-top tag="article" style="max-width: 14rem;" class="m-4 border-0">
-            <router-link :to="{path:'/page', query:{id:blog.id}}">
-            <b-card-title align="center" style="margin-bottom:.1rem; margin-top:-.1rem" class="pointer">
+            <router-link :to="{path:'/page', query:{id:blog.id}}" class="pointer">
+            <b-card-title align="center" style="margin-bottom:.1rem; margin-top:-.1rem">
               {{blog.name}}
               </b-card-title>
             </router-link>
@@ -144,7 +144,7 @@ export default {
 /* 手手滑鼠 */
 .pointer {
   cursor: pointer;
-  color:black;
+  color:#424244;
   text-decoration:none;
 }
 .pointer:hover {
