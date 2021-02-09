@@ -2,16 +2,17 @@
   <div>
 
     <!-- product list -->
-    <b-container fluid>
+    <b-container style="padding:0 18vmin">
 
       <!-- card -->
       <!-- <b-row align-h="center" class="m-3"> -->
-        <div v-for="blog in findBlogById">
+        <!-- <div v-for="blog in findBlogById">
 
-        </div>
-        <b-card v-for="blog in findBlogById" :key="blog.id" :img-src="blog.pic" tag="article" class="m-4 border-0 productImg" img-left img-height="auto" img-width="250vmin">
-          <!-- <b-card-title align="center" style="margin-bottom:.1rem; margin-top:-.1rem">{{blog.name}}</b-card-title>
-          <b-card-text align="center">${{blog.price}}</b-card-text> -->
+        </div> -->
+        <b-card v-for="blog in findBlogById" :key="blog.id" :img-src="blog.pic" tag="article" class="m-4 border-0 productImg" img-left img-height="auto" img-width="350vmin">
+          <b-card-title style="margin-left:60px">{{blog.name}}</b-card-title>
+          <b-form-select v-model="selected" :options="options"></b-form-select>
+          <b-card-text style="margin-left:60px">${{blog.price}}</b-card-text>
         </b-card>
         <h></h>
 
@@ -29,7 +30,14 @@ export default {
       blogs: [],
       imgSnowboard:'url(' + require('../img/snowboard.jpg') + ')',
       imgSnow:'url(' + require('../img/snow.jpg') + ')',
-      query: this.$route.query.id
+      query: this.$route.query.id,
+      options: [
+          { value: null, text: 'Please select an option' },
+          { value: 'a', text: 'This is First option' },
+          { value: 'b', text: 'Selected Option' },
+          { value: { C: '3PO' }, text: 'This is an option with object value' },
+          { value: 'd', text: 'This one is disabled', disabled: true }
+      ]
     };
   },
   mounted() {
@@ -74,13 +82,13 @@ export default {
   .card {
     display: block;
   }
-  
+  /* card body 沒有東西 拔掉 */
+  .card-body {
+    display: none;
+  }
 }
 
-/* card body 沒有東西 拔掉 */
-.card-body {
-  display: none;
-}
+
 
 /* 手手滑鼠 */
 .pointer {
